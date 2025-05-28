@@ -5,8 +5,10 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Tab spacing
-vim.o.tabstop = 4
-vim.o.shiftwidth = 4
+vim.opt.expandtab = true -- Use spaces instead of tabs
+vim.opt.shiftwidth = 4 -- Number of spaces for each indentation level
+vim.opt.softtabstop = 4 -- Number of spaces when hitting Tab
+vim.opt.tabstop = 4 -- Number of spaces a tab counts for
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
@@ -15,8 +17,6 @@ vim.g.have_nerd_font = true
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
-
-vim.keymap.set('n', '<leader>e', '<Cmd>Neotree toggle<CR>')
 
 -- Make line numbers default
 vim.o.number = true
@@ -88,6 +88,8 @@ vim.o.confirm = true
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
+
+vim.keymap.set('n', '<leader>e', '<Cmd>Neotree toggle<CR>')
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
@@ -190,6 +192,12 @@ require('lazy').setup({
     config = function()
       require 'config.alpha'
     end,
+  },
+  {
+    'barrett-ruth/live-server.nvim',
+    build = 'pnpm add -g live-server',
+    cmd = { 'LiveServerStart', 'LiveServerStop' },
+    config = true,
   },
   -- See `:help gitsigns` to understand what the configuration keys do
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
